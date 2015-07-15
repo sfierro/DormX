@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/libs/ParseCrashReporting-1.9.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4b2fc26f71157545cc214e36008dae494adeda93">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.9.3-f7d2565d5b9eaaf4d16c7a2ea1635829b612eb9e.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-c9db11cc62c1f8b32322a7a400bb8fbbcbf8d79b.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-293f3af719af87e105cdea5fb485def317905c10.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/libs/ParseFacebookUtilsV4-1.9.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8e48db090422d6f3ef016f71e2f67ece319b34d2">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseFacebookUtilsV4-1.9.3-67f4329ef748736504756f6fe65befb974535381.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-c36289d22a9450a8aa2da79ca3213a8bf0a80a84.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-9503e34b3f29b6362f259eabd259fa6787a9a82a.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/libs/Parse-1.9.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="35921ead63f6cafd9f84ff178c60fe474c4b17a6">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/Parse-1.9.3-af1dd12fc7a4ab47e9fdef126598e49de77723f3.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/libs/ParseFacebookUtilsV3-1.9.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6d7bd608f5398677741ab1438447600c561ad319">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseFacebookUtilsV3-1.9.3-f1196c656f3cc03b4c6b414449231c304412ced5.jar" />
+    </item>
+    <item
+        jar="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/samfierro/Desktop/DormX/ParseProject/ParseStarterProject/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-d3d82518311d1b113d6e3e3d51906867a0f44e12.jar" />
+    </item>
+
+</items>

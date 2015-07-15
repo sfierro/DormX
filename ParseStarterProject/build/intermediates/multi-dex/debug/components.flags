@@ -1,0 +1,42 @@
+-injars /Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/build/intermediates/multi-dex/debug/allclasses.jar
+-outjars /Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/build/intermediates/multi-dex/debug/componentClasses.jar
+
+-libraryjars /Users/samfierro/Library/Android/sdk/build-tools/22.0.1/lib/shrinkedAndroid.jar
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontpreverify
+-dontwarn
+-printconfiguration /Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/build/intermediates/multi-dex/debug/components.flags
+
+
+-keep class null {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep class loginusingparsesdk.Login {
+    <init>();
+}
+
+-keep class loginusingparsesdk.ForgetParsePassword {
+    <init>();
+}
+
+-keep class trial.MainActivity {
+    <init>();
+}
+
+-keep class loginusingparsesdk.SignUp {
+    <init>();
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}

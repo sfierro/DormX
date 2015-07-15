@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/top_bar"
+    android:layout_alignParentTop="true"
+    android:paddingTop="10dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="8dp"
+    android:background="@drawable/topbarbackground">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plusicon"
+        android:src="@drawable/newicon"
+        android:background="@null"
+        android:padding="7dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Filter By"
+        android:background="@drawable/btnborder"
+        android:padding="10dp"
+        android:id="@+id/filter"
+        android:layout_alignTop="@+id/plusicon"
+        android:layout_toLeftOf="@+id/plusicon"
+        android:layout_toStartOf="@+id/plusicon"
+        android:layout_marginRight="12dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Search"
+        android:layout_toLeftOf="@+id/search_icon"
+        android:layout_toStartOf="@+id/search_icon"
+        android:textColorHint="#ffffff"
+        android:paddingLeft="10dp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_icon"
+        android:layout_toLeftOf="@+id/filter"
+        android:background="@null"
+        android:src="@drawable/magicon"
+        android:layout_centerVertical="true"
+        android:paddingRight="25dp"
+        android:paddingTop="5dp"/>
+
+</RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:id="@+id/view1"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/top_bar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </View>
+
+    <ScrollView
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view1">
+
+
+
+    </ScrollView>
+
+</RelativeLayout>
+<!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/layout/listings_frag.xml -->

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:id="@+id/add_title"
+        android:layout_toLeftOf="@+id/$"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/$"
+        android:text="$"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:textSize="26sp"
+        android:layout_toLeftOf="@+id/add_price"
+        android:layout_toStartOf="@+id/add_price"
+        />
+
+    <EditText
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Price"
+        android:id="@+id/add_price"
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Add description here"
+        android:id="@+id/add_description"
+        android:layout_below="@+id/add_price"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category: "
+        android:textSize="18sp"
+        android:id="@+id/categorytext"
+        android:layout_below="@+id/add_description"/>
+
+
+    <Spinner
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/category_spinner"
+        android:layout_toRightOf="@+id/categorytext"
+        android:layout_below="@id/add_description"
+        android:entries="@array/category_arrays"
+        android:prompt="@string/category">
+
+    </Spinner>
+
+    <ImageButton
+        android:id="@+id/photo_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_photo"
+        android:layout_below="@id/category_spinner"
+        />
+
+    <Spinner
+        android:id="@+id/rating_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photo_button"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Post Listing"
+        android:id="@+id/post_btn"
+        android:layout_alignParentBottom="true"/>
+
+    <com.parse.ParseImageView
+        android:id="@+id/meal_preview_image"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp" />
+
+</RelativeLayout>
