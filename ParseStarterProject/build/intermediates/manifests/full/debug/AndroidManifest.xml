@@ -19,11 +19,6 @@
         <activity
             android:name="loginusingparsesdk.Login"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="loginusingparsesdk.ForgetParsePassword"
@@ -32,8 +27,16 @@
         <activity
             android:name="trial.MainActivity"
             android:theme="@style/AppBaseTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="loginusingparsesdk.SignUp" />
+        <activity android:name="venmo.VenmoWebViewActivity" />
+        <activity android:name="listings.SampleActivity" />
     </application>
 
 </manifest>

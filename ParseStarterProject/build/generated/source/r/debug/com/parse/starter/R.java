@@ -1531,18 +1531,21 @@ containing a value of this type.
         public static final int btnborder=0x7f02003c;
         public static final int drawer_shadow=0x7f02003d;
         public static final int fail=0x7f02003e;
-        public static final int ic_action_photo=0x7f02003f;
-        public static final int ic_drawer=0x7f020040;
-        public static final int ic_launcher=0x7f020041;
-        public static final int magicon=0x7f020042;
-        public static final int nav_drawers_colors=0x7f020043;
-        public static final int newicon=0x7f020044;
-        public static final int notification_template_icon_bg=0x7f020046;
-        public static final int topbarbackground=0x7f020045;
+        public static final int gradient_bg=0x7f02003f;
+        public static final int gradient_bg_hover=0x7f020040;
+        public static final int ic_action_photo=0x7f020041;
+        public static final int ic_drawer=0x7f020042;
+        public static final int ic_launcher=0x7f020043;
+        public static final int list_selector=0x7f020044;
+        public static final int magicon=0x7f020045;
+        public static final int nav_drawers_colors=0x7f020046;
+        public static final int newicon=0x7f020047;
+        public static final int notification_template_icon_bg=0x7f020049;
+        public static final int topbarbackground=0x7f020048;
     }
     public static final class id {
         public static final int $=0x7f0c005f;
-        public static final int action0=0x7f0c0075;
+        public static final int action0=0x7f0c0076;
         public static final int action_bar=0x7f0c0040;
         public static final int action_bar_activity_content=0x7f0c0000;
         public static final int action_bar_container=0x7f0c003f;
@@ -1551,7 +1554,7 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f0c0024;
         public static final int action_bar_title=0x7f0c0023;
         public static final int action_context_bar=0x7f0c0041;
-        public static final int action_divider=0x7f0c0079;
+        public static final int action_divider=0x7f0c007a;
         public static final int action_menu_divider=0x7f0c0002;
         public static final int action_menu_presenter=0x7f0c0003;
         public static final int action_mode_bar=0x7f0c003d;
@@ -1573,11 +1576,11 @@ containing a value of this type.
         public static final int camera_photo_button=0x7f0c006d;
         public static final int camera_preview=0x7f0c006b;
         public static final int camera_surface_view=0x7f0c006c;
-        public static final int cancel_action=0x7f0c0076;
+        public static final int cancel_action=0x7f0c0077;
         public static final int category_spinner=0x7f0c0063;
         public static final int categorytext=0x7f0c0062;
         public static final int checkbox=0x7f0c0038;
-        public static final int chronometer=0x7f0c007c;
+        public static final int chronometer=0x7f0c007d;
         public static final int collapseActionView=0x7f0c0017;
         public static final int container=0x7f0c0057;
         public static final int contentPanel=0x7f0c0031;
@@ -1591,7 +1594,7 @@ containing a value of this type.
         public static final int dropdown=0x7f0c001c;
         public static final int edit_query=0x7f0c0042;
         public static final int end=0x7f0c0014;
-        public static final int end_padder=0x7f0c0081;
+        public static final int end_padder=0x7f0c0082;
         public static final int etEmail=0x7f0c005a;
         public static final int etPassword=0x7f0c005b;
         public static final int etPasswordConfirm=0x7f0c005c;
@@ -1605,15 +1608,15 @@ containing a value of this type.
         public static final int icon=0x7f0c002b;
         public static final int ifRoom=0x7f0c0018;
         public static final int image=0x7f0c0028;
-        public static final int info=0x7f0c0080;
-        public static final int line1=0x7f0c007a;
-        public static final int line3=0x7f0c007e;
+        public static final int info=0x7f0c0081;
+        public static final int line1=0x7f0c007b;
+        public static final int line3=0x7f0c007f;
         public static final int listMode=0x7f0c0009;
         public static final int list_item=0x7f0c002a;
         public static final int login=0x7f0c0051;
         public static final int meal_preview_image=0x7f0c0067;
-        public static final int media_actions=0x7f0c0078;
-        public static final int menu_forgot_password=0x7f0c0082;
+        public static final int media_actions=0x7f0c0079;
+        public static final int menu_forgot_password=0x7f0c0084;
         public static final int middle=0x7f0c0015;
         public static final int multiply=0x7f0c001e;
         public static final int navigation_drawer=0x7f0c0058;
@@ -1654,14 +1657,14 @@ containing a value of this type.
         public static final int src_atop=0x7f0c0020;
         public static final int src_in=0x7f0c0021;
         public static final int src_over=0x7f0c0022;
-        public static final int status_bar_latest_event_content=0x7f0c0077;
+        public static final int status_bar_latest_event_content=0x7f0c0078;
         public static final int submit_area=0x7f0c004b;
         public static final int tabMode=0x7f0c000b;
-        public static final int text=0x7f0c007f;
-        public static final int text2=0x7f0c007d;
+        public static final int text=0x7f0c0080;
+        public static final int text2=0x7f0c007e;
         public static final int textSpacerNoButtons=0x7f0c0033;
         public static final int textView1=0x7f0c0068;
-        public static final int time=0x7f0c007b;
+        public static final int time=0x7f0c007c;
         public static final int title=0x7f0c002c;
         public static final int title_template=0x7f0c002f;
         public static final int topPanel=0x7f0c002e;
@@ -1669,6 +1672,8 @@ containing a value of this type.
         public static final int up=0x7f0c0008;
         public static final int useLogo=0x7f0c0012;
         public static final int username=0x7f0c004f;
+        public static final int venmo=0x7f0c0075;
+        public static final int venmo_wv=0x7f0c0083;
         public static final int view1=0x7f0c0074;
         public static final int withText=0x7f0c001a;
         public static final int wrap_content=0x7f0c001d;
@@ -1733,6 +1738,7 @@ containing a value of this type.
         public static final int select_dialog_multichoice_material=0x7f030031;
         public static final int select_dialog_singlechoice_material=0x7f030032;
         public static final int support_simple_spinner_dropdown_item=0x7f030033;
+        public static final int venmo_webview=0x7f030034;
     }
     public static final class menu {
         public static final int activity_login=0x7f0d0000;

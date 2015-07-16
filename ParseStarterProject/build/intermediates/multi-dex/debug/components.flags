@@ -32,6 +32,14 @@
     <init>();
 }
 
+-keep class venmo.VenmoWebViewActivity {
+    <init>();
+}
+
+-keep class listings.SampleActivity {
+    <init>();
+}
+
 -keep public class * extends android.app.backup.BackupAgent {
     <init>();
 }

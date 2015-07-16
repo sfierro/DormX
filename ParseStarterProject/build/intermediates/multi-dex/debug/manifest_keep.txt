@@ -6,6 +6,8 @@
 -keep class loginusingparsesdk.ForgetParsePassword { <init>(); }
 -keep class trial.MainActivity { <init>(); }
 -keep class loginusingparsesdk.SignUp { <init>(); }
+-keep class venmo.VenmoWebViewActivity { <init>(); }
+-keep class listings.SampleActivity { <init>(); }
 -keep public class * extends android.app.backup.BackupAgent {
     <init>();
 }

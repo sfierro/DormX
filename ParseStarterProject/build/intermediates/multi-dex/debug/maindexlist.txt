@@ -53,6 +53,7 @@ trial/NavigationDrawerFragment.class
 android/support/annotation/AnyRes.class
 android/support/v4/app/LoaderManager.class
 com/parse/Parse.class
+venmo/VenmoLibrary.class
 com/parse/ParseQuery.class
 android/support/v7/app/ActionBar.class
 android/support/v4/widget/DrawerLayout.class
@@ -74,6 +75,7 @@ android/support/annotation/AttrRes.class
 android/support/v4/app/ActivityCompat.class
 android/support/annotation/BoolRes.class
 com/parse/ParseRequest.class
+venmo/VenmoLibrary$VenmoResponse.class
 android/support/v4/widget/MaterialProgressDrawable.class
 com/parse/LogInCallback.class
 android/support/v7/widget/LinearLayoutCompat$DividerMode.class
@@ -122,6 +124,7 @@ android/support/v4/util/SimpleArrayMap.class
 android/support/v4/app/FragmentActivity$1.class
 android/support/v4/app/FragmentState.class
 android/support/v7/widget/LinearLayoutCompat$LayoutParams.class
+venmo/VenmoWebViewActivity.class
 com/parse/SignUpCallback.class
 android/support/v4/app/TaskStackBuilder.class
 android/support/v4/util/LogWriter.class
@@ -129,6 +132,7 @@ android/support/v4/widget/SwipeRefreshLayout.class
 android/support/v4/content/ContextCompat.class
 android/support/v7/app/ActionBar$OnNavigationListener.class
 android/support/annotation/NonNull.class
+venmo/VenmoWebViewActivity$VenmoJavaScriptInterface.class
 loginusingparsesdk/Login.class
 com/parse/ParsePush.class
 android/support/v7/app/ActionBar$TabListener.class

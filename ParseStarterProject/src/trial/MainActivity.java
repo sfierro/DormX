@@ -27,7 +27,7 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
+     * Used to store the last  titscreenle. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
 
@@ -104,8 +104,10 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 4:
                 mTitle = getString(R.string.title_section4);
+                break;
             case 5:
                 mTitle = getString(R.string.title_section5);
+                break;
         }
     }
 
