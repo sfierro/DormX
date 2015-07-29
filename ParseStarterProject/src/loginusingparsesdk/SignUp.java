@@ -28,6 +28,7 @@ public class SignUp extends Activity implements OnClickListener{
 	private EditText mUserNameEditText;
 	private EditText mEmailEditText; 
 	private EditText mPasswordEditText;
+	private EditText nameEditText;
 	private EditText mConfirmPasswordEditText;
 	private Button mCreateAccountButton;
 
@@ -35,6 +36,7 @@ public class SignUp extends Activity implements OnClickListener{
 	private String mUsername;
 	private String mPassword;
 	private String mConfirmPassword;
+	private String name;
 
 	// flag for Internet connection status
 		Boolean isInternetPresent = false;
@@ -55,6 +57,7 @@ public class SignUp extends Activity implements OnClickListener{
 		mEmailEditText = (EditText) findViewById(R.id.etEmail);
 		mPasswordEditText = (EditText) findViewById(R.id.etPassword);
 		mConfirmPasswordEditText = (EditText) findViewById(R.id.etPasswordConfirm);
+		nameEditText = (EditText) findViewById(R.id.input_name);
 
 		mCreateAccountButton = (Button) findViewById(R.id.btnCreateAccount);
 		mCreateAccountButton.setOnClickListener(this);
@@ -99,6 +102,13 @@ public class SignUp extends Activity implements OnClickListener{
 		mUsername = mUserNameEditText.getText().toString();
 		mPassword = mPasswordEditText.getText().toString();
 		mConfirmPassword = mConfirmPasswordEditText.getText().toString();
+		name = nameEditText.getText().toString();
+
+		if (TextUtils.isEmpty(name)) {
+			nameEditText.setError("This field is required");
+			focusView = nameEditText;
+			cancel = true;
+		}
 
 		// Check for a valid confirm password.
 		if (TextUtils.isEmpty(mConfirmPassword)) {
@@ -140,19 +150,21 @@ public class SignUp extends Activity implements OnClickListener{
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
 			Toast.makeText(getApplicationContext(), "signUp", Toast.LENGTH_SHORT).show();
-			signUp(mUsername.toLowerCase(Locale.getDefault()), mEmail, mPassword);
+			signUp(mUsername.toLowerCase(Locale.getDefault()), mEmail, mPassword,name);
 
 		}
 
 	}
 
-	private void signUp(final String mUsername, String mEmail, String mPassword) {
+	private void signUp(final String mUsername, String mEmail, String mPassword, String name) {
 		// TODO Auto-generated method stub
 		Toast.makeText(getApplicationContext(), mUsername + " - " + mEmail, Toast.LENGTH_SHORT).show();
 		ParseUser user = new ParseUser();
 		user.setUsername(mUsername);
 		user.setPassword(mPassword);
 		user.setEmail(mEmail);
+		user.put("Name",name);
+
 		 
 		user.signUpInBackground(new SignUpCallback() {
 		  public void done(ParseException e) {
@@ -179,6 +191,7 @@ public class SignUp extends Activity implements OnClickListener{
 		mUserNameEditText.setError(null);
 		mPasswordEditText.setError(null);
 		mConfirmPasswordEditText.setError(null);
+		nameEditText.setError(null);
 	}
 
 	@SuppressWarnings("deprecation")

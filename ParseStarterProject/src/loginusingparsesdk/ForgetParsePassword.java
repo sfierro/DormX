@@ -24,7 +24,7 @@ public class ForgetParsePassword extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.forgetpassword);
+		setContentView(R.layout.forget_password);
 		
 		et_forgetpassword = (EditText) findViewById(R.id.et_forgetpassword);
 		btn_submitforgetpassword = (Button) findViewById(R.id.btn_submitforgetpassword);

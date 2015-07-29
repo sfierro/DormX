@@ -7,7 +7,9 @@
 -keep class trial.MainActivity { <init>(); }
 -keep class loginusingparsesdk.SignUp { <init>(); }
 -keep class venmo.VenmoWebViewActivity { <init>(); }
--keep class listings.SampleActivity { <init>(); }
+-keep class com.google.android.gms.ads.AdActivity { <init>(); }
+-keep class com.google.android.gms.ads.purchase.InAppPurchaseActivity { <init>(); }
+-keep class com.google.android.gms.wallet.EnableWalletOptimizationReceiver { <init>(); }
 -keep public class * extends android.app.backup.BackupAgent {
     <init>();
 }

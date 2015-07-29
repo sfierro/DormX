@@ -3,8 +3,11 @@ package trial;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,7 +18,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseUser;
 import com.parse.starter.R;
+
+import java.util.List;
+
+import listings.ListingsFrag;
 
 
 public class MainActivity extends ActionBarActivity
@@ -25,6 +37,8 @@ public class MainActivity extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    private Listing listing;
+    private Listing thisListing;
 
     /**
      * Used to store the last  titscreenle. For use in {@link #restoreActionBar()}.
@@ -40,10 +54,15 @@ public class MainActivity extends ActionBarActivity
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
+        listing = new Listing();
+
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        ParseGeoPoint point = getLocation();
+        ParseUser.getCurrentUser().put("current",point);
     }
 
     @Override
@@ -185,6 +204,36 @@ public class MainActivity extends ActionBarActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+    }
+
+    public Listing getCurrentListing() {
+        return listing;
+    }
+
+    public ParseGeoPoint getLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        String provider = LocationManager.NETWORK_PROVIDER;
+        Location location = locationManager.getLastKnownLocation(provider);
+        double lat =  location.getLatitude();
+        double lng = location.getLongitude();
+        ParseGeoPoint geoPoint = new ParseGeoPoint(lat,lng);
+        return geoPoint;
+    }
+
+    public void makeNewListing() {
+        listing = new Listing();
+    }
+
+    public void setListing(Listing lst){
+        thisListing = lst;
+    }
+
+    public Listing getListing() {
+        return thisListing;
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
 }

@@ -73,18 +73,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
     </View>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Venmo"
-        android:id="@+id/venmo"
-        android:layout_below="@+id/view1"/>
 
     <ScrollView
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/venmo">
+        android:layout_below="@+id/view1"
+        android:fillViewport="true"
+        >
+
+        <ListView
+            android:id="@+id/list2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="#b5b5b5"
+            android:dividerHeight="1dp"
+            android:listSelector="@drawable/list_selector">
+        </ListView>
 
 
     </ScrollView>

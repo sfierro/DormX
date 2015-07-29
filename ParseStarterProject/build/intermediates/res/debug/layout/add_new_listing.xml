@@ -73,13 +73,9 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_action_photo"
         android:layout_below="@id/category_spinner"
+        android:layout_centerHorizontal="true"
         />
 
-    <Spinner
-        android:id="@+id/rating_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/photo_button"/>
 
     <Button
         android:layout_width="match_parent"
@@ -91,7 +87,8 @@
     <com.parse.ParseImageView
         android:id="@+id/meal_preview_image"
         android:layout_width="wrap_content"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:layout_below="@+id/photo_button"/>
 
 </RelativeLayout>
 <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/layout/add_new_listing.xml -->

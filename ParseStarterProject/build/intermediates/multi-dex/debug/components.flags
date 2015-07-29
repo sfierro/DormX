@@ -36,7 +36,15 @@
     <init>();
 }
 
--keep class listings.SampleActivity {
+-keep class com.google.android.gms.ads.AdActivity {
+    <init>();
+}
+
+-keep class com.google.android.gms.ads.purchase.InAppPurchaseActivity {
+    <init>();
+}
+
+-keep class com.google.android.gms.wallet.EnableWalletOptimizationReceiver {
     <init>();
 }
 

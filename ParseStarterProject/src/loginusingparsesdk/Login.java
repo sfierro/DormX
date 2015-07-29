@@ -19,11 +19,14 @@ import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 import com.parse.starter.R;
 
 import java.util.Locale;
 
+import trial.Listing;
 import trial.MainActivity;
 
 public class Login extends Activity {
@@ -32,6 +35,7 @@ public class Login extends Activity {
 	Button btn_ForgetPass = null;
 	private EditText mUserNameEditText;
 	private EditText mPasswordEditText;
+//	private ParseQueryAdapter<Listing> mainAdapter;
 
 	// flag for Internet connection status
 	Boolean isInternetPresent = false;
@@ -107,7 +111,9 @@ public class Login extends Activity {
 
 	}
 
-	public void onCreateParse() { 
+	public void onCreateParse() {
+		ParseObject.registerSubclass(Listing.class);
+		Parse.enableLocalDatastore(this);
 		Parse.initialize(this, "OHN1vjNjDDN5L46ztns0EGB7ApSq1rXi3RrHksN8", "w1xlxox48cSzRWflCfuzR5Oa6gG5qU6qlKAhA03z");
 	}
 

@@ -3,6 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp" >
+<EditText
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="25dp"
+    android:hint="Name"
+    android:inputType="text"
+    android:id="@+id/input_name"/>
 
     <EditText
         android:id="@+id/etUsername"
@@ -12,7 +20,8 @@
         android:layout_marginTop="25dp"
         android:hint="@string/usernameHint"
         android:inputType="text"
-        android:maxLength="15" />
+        android:maxLength="15"
+        android:layout_below="@+id/input_name"/>
 
     <EditText
         android:id="@+id/etEmail"

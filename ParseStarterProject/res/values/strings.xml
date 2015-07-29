@@ -34,6 +34,7 @@
 
     <string-array name="category_arrays">
         <item>Furniture</item>
+        <item>Electronics</item>
         <item>Appliances</item>
         <item>Tickets</item>
         <item>Textbooks</item>
