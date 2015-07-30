@@ -18,11 +18,16 @@ package listings;
 
 public class ListingsFragAdapter extends ParseQueryAdapter<Listing> {
 
+
+
     public ListingsFragAdapter (Context context) {
         super(context, new ParseQueryAdapter.QueryFactory<Listing>() {
             public ParseQuery<Listing> create() {
+                Double maxDistance;
                 // Here we can configure a ParseQuery to display
-                Double maxDistance = Double.parseDouble(ParseUser.getCurrentUser().getString("miles"));
+                if ((ParseUser.getCurrentUser().getString("miles"))==null) {
+                    maxDistance = 5.0;
+                } else {maxDistance = Double.parseDouble(ParseUser.getCurrentUser().getString("miles"));}
                 ParseGeoPoint point = ParseUser.getCurrentUser().getParseGeoPoint("current");
                 ParseQuery query = new ParseQuery("Listing");
                 //only show listings that are within maxDistance

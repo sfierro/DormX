@@ -15,6 +15,7 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -58,21 +59,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LocationFrag.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LocationFrag.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/trial/LocationFrag.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71311474">
+            <state vertical-scroll-proportion="-9.666667">
               <caret line="102" column="62" selection-start-line="102" selection-start-column="62" selection-end-line="102" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListingsFragAdapter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ListingsFragAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/listings/ListingsFragAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="101" selection-start-line="24" selection-start-column="101" selection-end-line="24" selection-end-column="101" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="27" column="73" selection-start-line="27" selection-start-column="73" selection-end-line="27" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -1937,8 +1938,8 @@
         <option value="$PROJECT_DIR$/ParseStarterProject/src/listings/ListingsFrag.java" />
         <option value="$PROJECT_DIR$/ParseStarterProject/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/ParseStarterProject/res/layout/location_frag.xml" />
-        <option value="$PROJECT_DIR$/ParseStarterProject/src/listings/ListingsFragAdapter.java" />
         <option value="$PROJECT_DIR$/ParseStarterProject/src/trial/LocationFrag.java" />
+        <option value="$PROJECT_DIR$/ParseStarterProject/src/listings/ListingsFragAdapter.java" />
       </list>
     </option>
   </component>
@@ -2875,18 +2876,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/listings/ListingsFragAdapter.java">
+    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/trial/LocationFrag.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="101" selection-start-line="24" selection-start-column="101" selection-end-line="24" selection-end-column="101" />
+        <state vertical-scroll-proportion="-9.666667">
+          <caret line="102" column="62" selection-start-line="102" selection-start-column="62" selection-end-line="102" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/trial/LocationFrag.java">
+    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/listings/ListingsFragAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71311474">
-          <caret line="102" column="62" selection-start-line="102" selection-start-column="62" selection-end-line="102" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="27" column="73" selection-start-line="27" selection-start-column="73" selection-end-line="27" selection-end-column="73" />
           <folding />
         </state>
       </provider>
