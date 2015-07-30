@@ -14,14 +14,7 @@ package listings;
         import com.parse.ParseQueryAdapter;
         import com.parse.ParseUser;
         import com.parse.starter.R;
-
-        import java.util.Arrays;
-
         import trial.Listing;
-
-/**
- * Created by laurenbenitez on 7/26/15.
- */
 
 public class ListingsFragAdapter extends ParseQueryAdapter<Listing> {
 
@@ -29,10 +22,12 @@ public class ListingsFragAdapter extends ParseQueryAdapter<Listing> {
         super(context, new ParseQueryAdapter.QueryFactory<Listing>() {
             public ParseQuery<Listing> create() {
                 // Here we can configure a ParseQuery to display
-                double maxDistance = 5;
+                Double maxDistance = Double.parseDouble(ParseUser.getCurrentUser().getString("miles"));
                 ParseGeoPoint point = ParseUser.getCurrentUser().getParseGeoPoint("current");
                 ParseQuery query = new ParseQuery("Listing");
+                //only show listings that are within maxDistance
                 query.whereWithinMiles("location", point, maxDistance);
+                //order with most recent at top
                 query.orderByDescending("createdAt");
                 return query;
             }
@@ -48,6 +43,7 @@ public class ListingsFragAdapter extends ParseQueryAdapter<Listing> {
 
         super.getItemView(lst, v, parent);
 
+        //set photo
         ParseImageView mealImage = (ParseImageView) v.findViewById(R.id.icon);
         ParseFile photoFile = lst.getParseFile("photo");
         if (photoFile != null) {
@@ -60,10 +56,11 @@ public class ListingsFragAdapter extends ParseQueryAdapter<Listing> {
             });
         }
 
+        //set other details
         TextView titleTextView = (TextView) v.findViewById(R.id.title);
         titleTextView.setText(lst.getTitle());
         TextView priceTextView = (TextView) v.findViewById(R.id.price);
-        priceTextView.setText(lst.getPrice());
+        priceTextView.setText("$"+lst.getPrice());
         TextView descriptionTextView = (TextView) v.findViewById(R.id.description);
         descriptionTextView.setText(lst.getDescription());
 

@@ -28,6 +28,7 @@ import com.parse.starter.R;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import trial.MainActivity;
 import trial.ProfileFrag;
 
 public class CameraFragment2 extends android.support.v4.app.Fragment {
@@ -44,6 +45,10 @@ public class CameraFragment2 extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_camera, parent, false);
+
+        ((MainActivity) getActivity()).goBackToPrevious(true);
+        ((MainActivity) getActivity()).goBackToListingsFrag(false);
+        ((MainActivity) getActivity()).setActionBarTitle("New Profile Picture");
 
 
         photoButton = (ImageButton) v.findViewById(R.id.camera_photo_button);

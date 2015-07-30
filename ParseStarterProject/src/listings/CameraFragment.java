@@ -44,6 +44,10 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_camera, parent, false);
 
+		((MainActivity) getActivity()).goBackToPrevious(true);
+		((MainActivity) getActivity()).goBackToListingsFrag(false);
+		((MainActivity) getActivity()).setActionBarTitle("Item Picture");
+
 
 		photoButton = (ImageButton) v.findViewById(R.id.camera_photo_button);
 
@@ -123,7 +127,7 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 
 		// Resize photo from camera byte array
 		Bitmap listingImage = BitmapFactory.decodeByteArray(data, 0, data.length);
-		Bitmap listingImageScaled = Bitmap.createScaledBitmap(listingImage, 600, 600
+		Bitmap listingImageScaled = Bitmap.createScaledBitmap(listingImage, 400, 700
 				* listingImage.getHeight() / listingImage.getWidth(), false);
 
 		// Override Android default landscape orientation and save portrait

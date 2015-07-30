@@ -3,6 +3,16 @@
     <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="category_arrays">
+    <item>Furniture</item>
+    <item>Electronics</item>
+    <item>Appliances</item>
+    <item>Tickets</item>
+    <item>Textbooks</item>
+    <item>Clothes</item>
+    <item>Other</item>
+</string-array>
+    <string-array name="category_arrays2">
+        <item>Filter By: All</item>
         <item>Furniture</item>
         <item>Electronics</item>
         <item>Appliances</item>
@@ -357,7 +367,7 @@
     <string name="decline">Decline</string>
     <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/values/strings.xml -->
     <eat-comment/>
-    <string name="emailHint">Email</string>
+    <string name="emailHint">School Email</string>
     <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/values/strings_activity_login.xml -->
     <eat-comment/>
     <string name="error_duplicate_email">This email address is already in use</string>
@@ -402,6 +412,10 @@
     <string name="prompt_password">Password</string>
     <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/values/strings.xml -->
     <eat-comment/>
+    <string name="pull_to_refresh_pull_label">Pull to refresh...</string>
+    <string name="pull_to_refresh_refreshing_label">Loading...</string>
+    <string name="pull_to_refresh_release_label">Release to refresh...</string>
+    <string name="pull_to_refresh_tap_label">Tap to refresh...</string>
     <string name="signIn">Sign In</string>
     <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>

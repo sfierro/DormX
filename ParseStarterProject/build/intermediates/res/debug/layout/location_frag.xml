@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/map_container">
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        />
+    <Button
+        android:layout_margin="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 mi."
+        android:layout_alignParentBottom="true"
+        android:id="@+id/mi1"/>
+    <Button
+        android:layout_margin="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 mi."
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/mi1"
+        android:id="@+id/mi5"/>
+    <Button
+        android:layout_margin="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 mi."
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/mi5"
+        android:id="@+id/mi10"/>
 
-</LinearLayout>
+    <Button
+        android:layout_margin="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 mi."
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/mi10"
+        android:id="@+id/mi20"/>
+
+
+</RelativeLayout>
 <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/layout/location_frag.xml -->

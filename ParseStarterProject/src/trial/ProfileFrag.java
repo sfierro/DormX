@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -25,12 +27,15 @@ import com.parse.ParseImageView;
 import com.parse.ParseUser;
 import com.parse.starter.R;
 
+import org.w3c.dom.Text;
+
 import listings.CameraFragment2;
+import listings.ListingsFragAdapter;
+import listings.ListingsFragDetailsFrag;
+import listings.MyListingsFragAdapter;
+import listings.MyListingsFragDetailsFrag;
 import venmo.VenmoLibrary;
 
-/**
- * Created by samfierro on 7/4/15.
- */
 public class ProfileFrag extends Fragment {
 
 
@@ -44,6 +49,11 @@ public class ProfileFrag extends Fragment {
     private Button add_pic;
     private ParseFile prof;
     private ImageButton cam;
+    private EditText venmo_edit_text;
+    private TextView venmo_name;
+    private Button submit;
+    private MyListingsFragAdapter mainAdapter;
+    private ListView list;
 
     public static ProfileFrag newInstance(){
 
@@ -59,6 +69,36 @@ public class ProfileFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.profile_frag, container, false);
+
+        ((MainActivity) getActivity()).goBackToPrevious(false);
+        ((MainActivity) getActivity()).goBackToListingsFrag(true);
+        ((MainActivity) getActivity()).setActionBarTitle("Profile");
+
+        //set listview adapter
+        mainAdapter = new MyListingsFragAdapter(this.getActivity());
+        ListView lv = (ListView) rootView.findViewById(R.id.list2);
+        lv.setAdapter(mainAdapter);
+        updateListings();
+
+        list = (ListView) rootView.findViewById(R.id.list2);
+
+        // Click event for single list row
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Listing listing = (Listing) parent.getItemAtPosition(position);
+                ((MainActivity) getActivity()).setListing(listing);
+
+                android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
+                        .beginTransaction();
+                transaction.replace(R.id.container, MyListingsFragDetailsFrag.newInstance());
+                transaction.addToBackStack("ProfileFrag");
+                transaction.commit();
+            }
+        });
+
         add_pic = (Button) rootView.findViewById(R.id.profpic);
         enter_name = (EditText) rootView.findViewById(R.id.enter_name);
         name = (TextView) rootView.findViewById(R.id.name);
@@ -68,10 +108,14 @@ public class ProfileFrag extends Fragment {
         name.setText(user.getString("Name"));
         prof_pic = (ParseImageView) rootView.findViewById(R.id.profpic1);
         cam = (ImageButton) rootView.findViewById(R.id.cam);
+        venmo_edit_text = (EditText) rootView.findViewById(R.id.venmo_edit_text);
+        venmo_name = (TextView) rootView.findViewById(R.id.venmo_name);
+        submit = (Button) rootView.findViewById(R.id.submit);
 
         prof = ParseUser.getCurrentUser().getParseFile("prof");
         ParseUser.getCurrentUser().saveInBackground();
 
+        //if user has already set a profile picture, load it.
         if (prof != null) {
             prof_pic.setParseFile(prof);
             prof_pic.loadInBackground(new GetDataCallback() {
@@ -91,6 +135,23 @@ public class ProfileFrag extends Fragment {
             save_name_btn.setVisibility(View.VISIBLE);
 
         }
+
+        if (user.getString("venmo") != null) {
+            venmo_name.setText(user.getString("venmo"));
+            venmo_name.setVisibility(View.VISIBLE);
+            venmo_edit_text.setVisibility(View.GONE);
+            submit.setVisibility(View.GONE);
+        }
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                venmo_name.setText(venmo_edit_text.getText().toString());
+                ParseUser.getCurrentUser().put("venmo",venmo_edit_text.getText().toString());
+                venmo_name.setVisibility(View.VISIBLE);
+                venmo_edit_text.setVisibility(View.GONE);
+                submit.setVisibility(View.GONE);
+            }
+            });
 
         save_name_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -118,6 +179,9 @@ public class ProfileFrag extends Fragment {
         add_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getActivity()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(enter_name.getWindowToken(), 0);
                 startCamera();
             }
         });
@@ -125,6 +189,9 @@ public class ProfileFrag extends Fragment {
         cam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getActivity()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(enter_name.getWindowToken(), 0);
                 startCamera();
             }
         });
@@ -139,12 +206,14 @@ public class ProfileFrag extends Fragment {
         android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
                 .beginTransaction();
         transaction.replace(R.id.container, cameraFragment);
+        transaction.addToBackStack("ProfileFrag");
         transaction.commit();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        updateListings();
         ParseFile photoFile = ParseUser.getCurrentUser().getParseFile("prof");
         ParseUser.getCurrentUser().saveInBackground();
         if (photoFile != null) {
@@ -166,6 +235,10 @@ public class ProfileFrag extends Fragment {
 
         ((MainActivity) activity).onSectionAttached(2);
 
+    }
+
+    public void updateListings(){
+        mainAdapter.loadObjects();
     }
 
 }

@@ -1,67 +1,69 @@
-
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#3B5998"
+    android:background="#81C194"
     >
-
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:text="1"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="50dp" />
-
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-        <LinearLayout
-            android:orientation="horizontal">
+            android:text=""
+            android:textSize="50dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:paddingRight="10dp"/>
 
             <com.parse.ParseImageView
                 android:id="@+id/parseimg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/price"
+                android:layout_margin="5dp"
                 />
+
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:enabled="true"
-                android:inputType="none"
-                android:text="2"
+                android:text=""
                 android:textColor="#FFFFFF"
-                android:textSize="30dp" />
-        </LinearLayout>
-    </TableRow>
+                android:textSize="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/title"
+                android:layout_margin="5dp"/>
 
-    <TableRow
-        android:id="@+id/tableRow6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Small Text"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="invisible" />
+            android:text=""
+            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/parseimg"
+            android:textSize="16sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat Seller"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:layout_toRightOf="@+id/parseimg"
+        android:layout_toEndOf="@+id/parseimg"
+        android:id="@+id/chat" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay Seller"
+        android:id="@+id/venmo"
+        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/parseimg"
+        android:layout_toStartOf="@+id/parseimg" />
 
 
-    </TableRow>
-
-
-</TableLayout>
+</RelativeLayout>

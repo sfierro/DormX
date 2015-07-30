@@ -1,10 +1,9 @@
 package listings;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -31,9 +26,9 @@ import com.parse.SaveCallback;
 import com.parse.starter.R;
 
 import trial.Listing;
-import listings.ListingsFrag;
 import trial.MainActivity;
 import listings.NothingSelectedSpinnerAdapter;
+import trial.ProfileFrag;
 
 /*
  * This fragment manages the data entry for a
@@ -70,12 +65,20 @@ public class AddNewListing extends android.support.v4.app.Fragment {
 
         View v = inflater.inflate(R.layout.add_new_listing, parent, false);
 
+        ((MainActivity) getActivity()).goBackToPrevious(true);
+        ((MainActivity) getActivity()).goBackToListingsFrag(false);
+        ((MainActivity) getActivity()).setActionBarTitle("New Listing");
 
+        if (ParseUser.getCurrentUser().getString("venmo") == null) {
+            showAlertDialog(this.getActivity(), "No Venmo username found",
+                    "Please enter your venmo username before posting a listing.", false);
+        }
+
+        //setting up category spinner
         spinner = (Spinner) v.findViewById(R.id.category_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.category_arrays, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setPrompt("Please select one");
-
         spinner.setAdapter(
                 new NothingSelectedSpinnerAdapter(
                         adapter,
@@ -94,12 +97,18 @@ public class AddNewListing extends android.support.v4.app.Fragment {
         post.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                if (editTextTitle.getText().toString().equals("") || editTextPrice.getText().toString().equals("") || editTextDescription.getText().toString().equals("") || spinner.getSelectedItem().toString().equals(null))
+                {
+                    showAlertDialog2(getActivity(), "Not all fields completed",
+                            "Please make sure you have completed all fields.", false);
+                } else {
+
                 Listing listing = ((MainActivity) getActivity()).getCurrentListing();
 
                 // When the user clicks "Save," upload the listing to Parse
                 // Add data to the listing object:
                 listing.setTitle(editTextTitle.getText().toString());
-                listing.setPrice("$"+editTextPrice.getText().toString());
+                listing.setPrice(editTextPrice.getText().toString());
                 listing.setDescription(editTextDescription.getText().toString());
                 listing.setCategory(spinner.getSelectedItem().toString());
 
@@ -121,17 +130,13 @@ public class AddNewListing extends android.support.v4.app.Fragment {
                         if (e == null) {
 
                         } else {
-                            Toast.makeText(
-                                    getActivity().getApplicationContext(),
-                                    "Error saving: " + e.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                });
-
+//                            Toast.makeText(
+//                                    getActivity(),
+//                                    "Error saving: " + e.getMessage(),
+//                                    Toast.LENGTH_SHORT).show();
+                        }} });
                 postListing();
-            }
+            }}
 
         });
 
@@ -141,11 +146,15 @@ public class AddNewListing extends android.support.v4.app.Fragment {
 
             @Override
             public void onClick(View v) {
+
+                //putting users inputs into Listing class before taking picture to retrieve when frag
+                //is started again so edit texts aren't empty
                 pos = spinner.getSelectedItemPosition();
                 ((MainActivity) getActivity()).getCurrentListing().setTitle(editTextTitle.getText().toString());
                 ((MainActivity) getActivity()).getCurrentListing().setPrice(editTextPrice.getText().toString());
                 ((MainActivity) getActivity()).getCurrentListing().setDescription(editTextDescription.getText().toString());
                 ((MainActivity) getActivity()).getCurrentListing().setPos(pos);
+
                 InputMethodManager imm = (InputMethodManager) getActivity()
                         .getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(editTextTitle.getWindowToken(), 0);
@@ -165,10 +174,12 @@ public class AddNewListing extends android.support.v4.app.Fragment {
 
 
     public void postListing(){
+        //make new listing in main activity so setters and getters are null again
         ((MainActivity) getActivity()).makeNewListing();
+
         android.support.v4.app.Fragment listings = new ListingsFrag();
         android.support.v4.app.FragmentTransaction transaction = this.getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container,listings);
+        transaction.replace(R.id.container, listings);
         transaction.commit();
 //        android.support.v4.app.FragmentManager fm = this.getActivity().getSupportFragmentManager();
 //		fm.popBackStack("ListingsFrag",
@@ -186,6 +197,7 @@ public class AddNewListing extends android.support.v4.app.Fragment {
         android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
                 .beginTransaction();
         transaction.replace(R.id.container, cameraFragment);
+        transaction.addToBackStack("AddNewListing");
         transaction.commit();
     }
 
@@ -197,11 +209,13 @@ public class AddNewListing extends android.support.v4.app.Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //if user has inputted info into edit texts set the text to what is was before taking pic
         editTextTitle.setText(((MainActivity) getActivity()).getCurrentListing().getTitle());
         editTextPrice.setText(((MainActivity) getActivity()).getCurrentListing().getPrice());
         editTextDescription.setText(((MainActivity) getActivity()).getCurrentListing().getDescription());
         spinner.setSelection(((MainActivity) getActivity()).getCurrentListing().getPos());
 
+        //setting photo
         ParseFile photoFile = ((MainActivity) getActivity())
                 .getCurrentListing().getPhotoFile();
         if (photoFile != null) {
@@ -219,6 +233,57 @@ public class AddNewListing extends android.support.v4.app.Fragment {
         super.onAttach(activity);
 
         ((MainActivity) activity).onSectionAttached(1);
+    }
+
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+        // Setting alert dialog icon
+        alertDialog.setIcon(R.drawable.fail);
+
+        // Setting OK Button
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                android.support.v4.app.Fragment profileFrag = new ProfileFrag();
+                android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
+                        .beginTransaction();
+                transaction.replace(R.id.container, profileFrag);
+                transaction.addToBackStack("AddNewListing");
+                transaction.commit();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
+
+    public void showAlertDialog2(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+                // Setting alert dialog icon
+                alertDialog.setIcon(R.drawable.fail);
+
+                // Setting OK Button
+                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                //nothing
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
     }
 
 }

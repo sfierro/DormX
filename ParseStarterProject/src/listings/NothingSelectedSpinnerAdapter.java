@@ -92,8 +92,6 @@ public class NothingSelectedSpinnerAdapter implements SpinnerAdapter, ListAdapte
     }
 
     /**
-     * Override this to do something dynamic... For example, "Pick your favorite
-     * of these 37".
      * @param parent
      * @return
      */

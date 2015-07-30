@@ -110,6 +110,13 @@ public class SignUp extends Activity implements OnClickListener{
 			cancel = true;
 		}
 
+
+		if (!(mEmail.substring(mEmail.length()-4,mEmail.length()).equals(".edu"))) {
+			mEmailEditText.setError("This is not a valid school email address");
+			focusView = mEmailEditText;
+			cancel = true;
+		}
+
 		// Check for a valid confirm password.
 		if (TextUtils.isEmpty(mConfirmPassword)) {
 			mConfirmPasswordEditText.setError(getString(R.string.error_field_required));
@@ -149,7 +156,6 @@ public class SignUp extends Activity implements OnClickListener{
 		} else {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
-			Toast.makeText(getApplicationContext(), "signUp", Toast.LENGTH_SHORT).show();
 			signUp(mUsername.toLowerCase(Locale.getDefault()), mEmail, mPassword,name);
 
 		}
@@ -170,12 +176,14 @@ public class SignUp extends Activity implements OnClickListener{
 		  public void done(ParseException e) {
 		    if (e == null) {
 		      signUpMsg("Account Created Successfully");
-		      Intent in = new Intent(getApplicationContext(), MainActivity.class);
-		      startActivity(in);
+				finish();
+//		      Intent in = new Intent(getApplicationContext(), Login.class);
+//		      startActivity(in);
 		    } else {
 		      // Sign up didn't succeed. Look at the ParseException
 		      // to figure out what went wrong
-		    	signUpMsg("Account already taken.");
+                Toast.makeText(SignUp.this,e.getMessage(),Toast.LENGTH_LONG).show();
+		    	//signUpMsg("Account already taken.");
 		    }
 		  }
 		});

@@ -235,7 +235,6 @@ com/google/android/gms/internal/zzdx.class
 com/google/android/gms/internal/zzgj.class
 com/google/android/gms/internal/zzfq.class
 com/google/android/gms/ads/internal/client/zzd.class
-trial/MainActivity$PlaceholderFragment.class
 com/google/android/gms/internal/zzhg.class
 com/google/android/gms/appstate/AppState.class
 com/google/android/gms/ads/internal/util/client/zza.class
@@ -368,7 +367,6 @@ com/parse/starter/R$drawable.class
 com/google/android/gms/ads/internal/purchase/zzd.class
 android/support/v7/app/ActionBar$NavigationMode.class
 android/support/v7/view/ActionMode.class
-trial/PaymentFrag.class
 com/google/android/gms/ads/internal/zzm.class
 android/support/v7/internal/widget/ViewUtils.class
 com/google/android/gms/internal/zzgc.class
@@ -487,6 +485,7 @@ venmo/VenmoWebViewActivity.class
 android/support/v4/widget/SwipeRefreshLayout.class
 android/support/v4/content/ContextCompat.class
 com/google/android/gms/internal/zzgy.class
+trial/MainActivity$3.class
 com/google/android/gms/ads/AdRequest.class
 com/google/android/gms/internal/zzay.class
 com/google/android/gms/internal/zzcp.class

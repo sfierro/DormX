@@ -13,14 +13,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 import com.parse.starter.R;
 
@@ -35,7 +33,6 @@ public class Login extends Activity {
 	Button btn_ForgetPass = null;
 	private EditText mUserNameEditText;
 	private EditText mPasswordEditText;
-//	private ParseQueryAdapter<Listing> mainAdapter;
 
 	// flag for Internet connection status
 	Boolean isInternetPresent = false;
@@ -48,7 +45,6 @@ public class Login extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
 		//Initializing Parse SDK
 		onCreateParse();
 		//Calling ParseAnalytics to see Analytics of our app
@@ -62,6 +58,7 @@ public class Login extends Activity {
 		btn_ForgetPass = (Button) findViewById(R.id.btn_ForgetPass);
 		mUserNameEditText = (EditText) findViewById(R.id.username);
 		mPasswordEditText = (EditText) findViewById(R.id.password);
+		mPasswordEditText.setText("");
 
 
 		btn_LoginIn.setOnClickListener(new OnClickListener() {
@@ -107,8 +104,6 @@ public class Login extends Activity {
 			}
 		});
 
-
-
 	}
 
 	public void onCreateParse() {
@@ -116,7 +111,6 @@ public class Login extends Activity {
 		Parse.enableLocalDatastore(this);
 		Parse.initialize(this, "OHN1vjNjDDN5L46ztns0EGB7ApSq1rXi3RrHksN8", "w1xlxox48cSzRWflCfuzR5Oa6gG5qU6qlKAhA03z");
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -206,7 +200,6 @@ public class Login extends Activity {
 	}
 	protected void loginUnSuccessful() {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
 		showAlertDialog(Login.this,"Login", "Username or Password is invalid.", false);
 	}
 
@@ -239,6 +232,10 @@ public class Login extends Activity {
 	}
 
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPasswordEditText.setText("");
+    }
 
 }

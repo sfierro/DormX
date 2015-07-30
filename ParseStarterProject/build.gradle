@@ -5,6 +5,7 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url 'https://maven.parse.com/repo' }
+
     }
     dependencies {
         classpath 'com.parse.tools:gradle:1.+'

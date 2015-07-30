@@ -13,6 +13,7 @@ import com.parse.ParseUser;
 @ParseClassName("Listing")
 public class Listing extends ParseObject {
 
+    //Listing class for Parse.
     public Listing() {
         // A default constructor is required.
     }
