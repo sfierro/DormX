@@ -5,6 +5,16 @@
     android:id="@+id/map_container">
 
     <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select max distance for viewing listings"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@android:color/holo_green_light"
+        android:layout_above="@+id/mi1"
+        android:padding="5dp"/>
+
+    <Button
         android:layout_margin="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +37,6 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/mi5"
         android:id="@+id/mi10"/>
-
     <Button
         android:layout_margin="0dp"
         android:layout_width="wrap_content"

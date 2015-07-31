@@ -192,6 +192,7 @@ com/google/ads/mediation/MediationAdapter.class
 com/google/android/gms/internal/zzhb.class
 com/google/android/gms/fitness/Fitness.class
 com/google/android/gms/nearby/messages/Strategy.class
+com/squareup/picasso/RequestCreator.class
 com/parse/ParseSQLiteCursor.class
 com/google/android/gms/ads/internal/zzd.class
 com/google/android/gms/maps/StreetViewPanoramaView.class
@@ -199,6 +200,7 @@ com/google/android/gms/internal/zzha$zza.class
 com/google/android/gms/internal/zzfs.class
 com/google/android/gms/ads/internal/request/zzd.class
 com/google/android/gms/internal/zzdv.class
+com/squareup/picasso/Downloader$Response.class
 bolts/AggregateException.class
 loginusingparsesdk/SignUp$2.class
 com/google/android/gms/ads/internal/zzh.class
@@ -289,6 +291,7 @@ android/support/annotation/AnimRes.class
 listings/ListingsFrag.class
 com/google/android/gms/internal/zzft.class
 com/google/android/gms/ads/internal/purchase/zzk.class
+com/squareup/picasso/Picasso$Builder.class
 com/google/android/gms/location/places/PlaceFilter.class
 android/support/v4/app/FragmentManagerState.class
 com/google/android/gms/ads/internal/client/SearchAdRequestParcel.class
@@ -319,6 +322,7 @@ com/google/android/gms/ads/internal/client/AdRequestParcel.class
 com/parse/LogInCallback.class
 com/google/android/gms/internal/zzby.class
 com/google/android/gms/analytics/HitBuilders$AppViewBuilder.class
+trial/Message.class
 com/parse/ParseGeoPoint.class
 com/google/android/gms/internal/zzfy.class
 com/google/android/gms/games/Game.class
@@ -443,6 +447,7 @@ com/google/android/gms/maps/MapFragment.class
 com/google/android/gms/internal/zzgt.class
 android/support/v4/app/FragmentManager.class
 com/google/android/gms/internal/zzec.class
+com/squareup/picasso/Picasso.class
 com/google/android/gms/ads/search/SearchAdRequest.class
 android/support/annotation/AttrRes.class
 com/google/android/gms/internal/zzej.class

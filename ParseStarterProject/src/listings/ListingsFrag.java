@@ -71,6 +71,7 @@ public class ListingsFrag extends android.support.v4.app.Fragment {
         ((MainActivity) getActivity()).goBackToListingsFrag(false);
         ((MainActivity) getActivity()).setActionBarTitle("Listings");
 
+        //button to create new listing
         ImageButton btn = (ImageButton) rootView.findViewById(R.id.plusicon);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -78,16 +79,14 @@ public class ListingsFrag extends android.support.v4.app.Fragment {
             }
         });
 
+        ((MainActivity)getActivity()).setActionBarTitle("Listings");
+
         //set listView adapter
         mainAdapter = new ListingsFragAdapter(this.getActivity());
-//        ListView lv = (ListView) rootView.findViewById(R.id.list2);
-//        lv.setAdapter(mainAdapter);
-
-        ((MainActivity)getActivity()).setActionBarTitle("Listings");
-        updateListings();
-
         pullToRefreshListView = (PullToRefreshListView) rootView.findViewById(R.id.pullDownList);
         pullToRefreshListView.setAdapter(mainAdapter);
+
+        updateListings();
 
         pullToRefreshListView.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             @Override
@@ -117,8 +116,8 @@ public class ListingsFrag extends android.support.v4.app.Fragment {
             }
         });
 
+        //spinner for filter by
         spinner = (Spinner) rootView.findViewById(R.id.filter);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

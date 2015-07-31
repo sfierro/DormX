@@ -18,6 +18,7 @@ import com.parse.starter.R;
 
 import java.util.Random;
 
+import trial.ChatFrag;
 import trial.Listing;
 import trial.MainActivity;
 import venmo.VenmoLibrary;
@@ -81,6 +82,18 @@ public class ListingsFragDetailsFrag extends android.support.v4.app.Fragment {
             @Override
             public void done(byte[] data, ParseException e) {
                 //
+            }
+        });
+
+        Button chat = (Button) v.findViewById(R.id.chat);
+        chat.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                android.support.v4.app.Fragment ChatFrag = new ChatFrag();
+                android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
+                        .beginTransaction();
+                transaction.replace(R.id.container, ChatFrag);
+                transaction.addToBackStack("ListingsFragDetailsFrag");
+                transaction.commit();
             }
         });
 

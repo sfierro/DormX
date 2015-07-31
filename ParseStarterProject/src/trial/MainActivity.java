@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity
     private Listing thisListing;
     private Boolean goBackToPrevious = false;
     private String search;
+    private Message message;
 
     private Boolean goBackToListingsFrag;
 
@@ -68,6 +69,7 @@ public class MainActivity extends ActionBarActivity
 
         mTitle = getTitle();
         listing = new Listing();
+        message = new Message();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -169,6 +171,7 @@ public class MainActivity extends ActionBarActivity
     public Listing getCurrentListing() {
         return listing;
     }
+    public Message getCurrentMessage() {return message;}
 
     //gets users location
     public ParseGeoPoint getLocation() {
@@ -229,6 +232,7 @@ public class MainActivity extends ActionBarActivity
     public void makeNewListing() {
         listing = new Listing();
     }
+    public void makeNewMessage() { message = new Message(); }
 
     public void setListing(Listing lst){
         thisListing = lst;
