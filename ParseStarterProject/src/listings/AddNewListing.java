@@ -255,6 +255,7 @@ public class AddNewListing extends android.support.v4.app.Fragment {
                         .beginTransaction();
                 transaction.replace(R.id.container, profileFrag);
                 transaction.addToBackStack("AddNewListing");
+                ((MainActivity)getActivity()).getNav().selectItem(1);
                 transaction.commit();
             }
         });

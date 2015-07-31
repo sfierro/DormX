@@ -32,7 +32,7 @@
         android:layout_marginTop="10dip"
         android:visibility="gone"
         android:layout_centerVertical="true"
-        style="?android:attr/progressBarStyle"
+        style="?android:attr/progressBarStyleSmall"
         android:indeterminateDrawable="@drawable/progress"
 
         />

@@ -193,6 +193,7 @@ public class MainActivity extends ActionBarActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, ListingsFrag.newInstance())
                     .commit();
+            mNavigationDrawerFragment.selectItem(0);
         }
 
         // to go home when you press back button (when in ListingsFrag)
@@ -202,8 +203,6 @@ public class MainActivity extends ActionBarActivity
             setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(setIntent);
         }
-
-
 
         // regular back button functionality
         else {
@@ -274,6 +273,10 @@ public class MainActivity extends ActionBarActivity
 
     public void goBackToListingsFrag(Boolean bool) {
         goBackToListingsFrag = bool;
+    }
+
+    public NavigationDrawerFragment getNav(){
+        return mNavigationDrawerFragment;
     }
 
 }

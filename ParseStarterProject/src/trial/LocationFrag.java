@@ -77,7 +77,7 @@ public class LocationFrag extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 circle.setRadius(8046.72);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 10.0f));
-                ParseUser.getCurrentUser().put("miles", "1");
+                ParseUser.getCurrentUser().put("miles", "5");
                 ParseUser.getCurrentUser().saveInBackground();
             }
         });
@@ -88,7 +88,7 @@ public class LocationFrag extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 circle.setRadius(16093.4);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 10.0f));
-                ParseUser.getCurrentUser().put("miles", "1");
+                ParseUser.getCurrentUser().put("miles", "10");
                 ParseUser.getCurrentUser().saveInBackground();
             }
         });
@@ -99,7 +99,7 @@ public class LocationFrag extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 circle.setRadius(32186.9);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 10.0f));
-                ParseUser.getCurrentUser().put("miles", "1");
+                ParseUser.getCurrentUser().put("miles", "20");
                 ParseUser.getCurrentUser().saveInBackground();
             }
         });
@@ -146,7 +146,20 @@ public class LocationFrag extends android.support.v4.app.Fragment {
 
         circle = map.addCircle(new CircleOptions()
                 .center(coordinate)
-                .radius(8046.72)
                 .strokeColor(Color.argb(100, 127, 255, 0))
                 .fillColor(Color.argb(100, 127, 255, 0)));
+
+        if (ParseUser.getCurrentUser().getString("miles")==null) {
+            circle.setRadius(8046.72);
+        } else if((ParseUser.getCurrentUser().getString("miles")).equals("1")) {
+            circle.setRadius(1609.34);
+        } else if ((ParseUser.getCurrentUser().getString("miles")).equals("5")) {
+            circle.setRadius(8046.72);
+        } else if ((ParseUser.getCurrentUser().getString("miles")).equals("10")) {
+            circle.setRadius(16093.4);
+        } else if ((ParseUser.getCurrentUser().getString("miles")).equals("20")) {
+            circle.setRadius(32186.9);
+        }
+
+
     }}
