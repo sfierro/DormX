@@ -38,12 +38,26 @@ public class ChatFrag extends Fragment {
     private ChatListAdapter mAdapter;
     private static final int MAX_CHAT_MESSAGES_TO_SHOW = 50;
     private Handler handler = new Handler();
+    Boolean sameId;
+    String id;
+
+    public static ChatFrag newInstance(){
+
+        ChatFrag fragment = new ChatFrag();
+        return fragment;
+
+    }
+
+    Convo convo;
+    ParseObject message;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle SavedInstanceState) {
 
         View v = inflater.inflate(R.layout.activity_chat, parent, false);
+
+        convo = ((MainActivity) getActivity()).getConvo();
 
         etMessage = (EditText) v.findViewById(R.id.etMessage);
         btSend = (Button) v.findViewById(R.id.btSend);
@@ -76,16 +90,17 @@ public class ChatFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 String data = etMessage.getText().toString();
-                ParseObject message = ((MainActivity)getActivity()).getCurrentMessage();
+                message = ((MainActivity)getActivity()).getCurrentMessage();
                 message.put("Author", ParseUser.getCurrentUser());
                 message.put("body", data);
+                //puts the same object ID as convo to message ID so they are correlated
+                message.put("ID",convo.getObjectId());
                 message.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
-                        Toast.makeText(getActivity(), "Successfully created message on Parse",
-                                Toast.LENGTH_SHORT).show();
                     }
                 });
+
                 ((MainActivity)getActivity()).makeNewMessage();
                 etMessage.setText("");
             }
@@ -104,7 +119,13 @@ public class ChatFrag extends Fragment {
             public void done(List<Message> messages, ParseException e) {
                 if (e == null) {
                     mMessages.clear();
-                    mMessages.addAll(messages);
+                    //Parses through all messages in Parse, if message goes with convo then add to listview
+                    for (int i = 0; i < messages.size(); i++) {
+                        if (messages.get(i).getString("ID")==null) {continue;}
+                          if (messages.get(i).getID().equals(convo.getObjectId())){
+                            mMessages.add(messages.get(i));
+                        }
+                    }
                     mAdapter.notifyDataSetChanged(); // update adapter
                     lvChat.invalidate(); // redraw listview
                 } else {

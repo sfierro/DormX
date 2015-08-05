@@ -43,9 +43,11 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private Listing listing;
     private Listing thisListing;
+    private Convo thisConvo;
     private Boolean goBackToPrevious = false;
     private String search;
     private Message message;
+    private Convo convo;
 
     private Boolean goBackToListingsFrag;
 
@@ -70,6 +72,7 @@ public class MainActivity extends ActionBarActivity
         mTitle = getTitle();
         listing = new Listing();
         message = new Message();
+        convo = new Convo();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -99,9 +102,13 @@ public class MainActivity extends ActionBarActivity
                     .commit();
         } else if (position == 2){
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, LocationFrag.newInstance())
+                    .replace(R.id.container, Inbox.newInstance())
                     .commit();
         } else if (position == 3){
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, LocationFrag.newInstance())
+                    .commit();
+        } else if (position == 4){
             AlertDialog.Builder db = new AlertDialog.Builder(MainActivity.this);
             db.setTitle("Are you sure?");
             db.setPositiveButton("Sign out", new
@@ -131,9 +138,12 @@ public class MainActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section2);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section4);
+                mTitle = "Chat Inbox";
                 break;
             case 4:
+                mTitle = getString(R.string.title_section4);
+                break;
+            case 5:
                 mTitle = getString(R.string.title_section5);
                 break;
         }
@@ -172,6 +182,7 @@ public class MainActivity extends ActionBarActivity
         return listing;
     }
     public Message getCurrentMessage() {return message;}
+    public Convo getCurrentConvo() {return convo;}
 
     //gets users location
     public ParseGeoPoint getLocation() {
@@ -234,6 +245,8 @@ public class MainActivity extends ActionBarActivity
     }
     public void makeNewMessage() { message = new Message(); }
 
+    public void makeNewConvo() { convo = new Convo(); }
+
     public void setListing(Listing lst){
         thisListing = lst;
     }
@@ -241,6 +254,10 @@ public class MainActivity extends ActionBarActivity
     public Listing getListing() {
         return thisListing;
     }
+
+    public void setConvo(Convo con) { thisConvo = con;}
+
+    public Convo getConvo() {return thisConvo;}
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);

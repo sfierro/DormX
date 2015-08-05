@@ -44,6 +44,7 @@ com/google/android/gms/internal/zzcg.class
 com/google/android/gms/internal/zzdc.class
 com/google/android/gms/internal/zzdj.class
 com/google/android/gms/ads/internal/reward/client/RewardedVideoAdRequestParcel.class
+trial/Convo.class
 com/google/android/gms/gcm/Task.class
 com/google/android/gms/internal/zzbk$zza.class
 android/support/v4/widget/MaterialProgressDrawable.class
@@ -126,6 +127,7 @@ com/google/android/gms/internal/zzhy.class
 com/google/android/gms/wearable/ChannelApi$CloseReason.class
 trial/Listing.class
 android/support/annotation/Keep.class
+trial/Inbox.class
 com/google/android/gms/games/multiplayer/turnbased/LoadMatchesResponse.class
 com/google/android/gms/internal/zzdh$zzb.class
 com/google/android/gms/common/ConnectionResult.class

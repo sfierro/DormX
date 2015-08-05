@@ -24,6 +24,7 @@ import com.parse.starter.R;
 
 import java.util.Locale;
 
+import trial.Convo;
 import trial.Listing;
 import trial.MainActivity;
 import trial.Message;
@@ -110,6 +111,7 @@ public class Login extends Activity {
 	public void onCreateParse() {
 		ParseObject.registerSubclass(Listing.class);
         ParseObject.registerSubclass(Message.class);
+		ParseObject.registerSubclass(Convo.class);
 		Parse.enableLocalDatastore(this);
 		Parse.initialize(this, "OHN1vjNjDDN5L46ztns0EGB7ApSq1rXi3RrHksN8", "w1xlxox48cSzRWflCfuzR5Oa6gG5qU6qlKAhA03z");
 	}

@@ -106,6 +106,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
+                        "Chat Inbox",
                         getString(R.string.title_section4),
                         getString(R.string.title_section5),
 

@@ -12,15 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.GetDataCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseImageView;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.starter.R;
 
 import java.util.Random;
 
 import trial.ChatFrag;
+import trial.Convo;
 import trial.Listing;
 import trial.MainActivity;
+import trial.Message;
 import venmo.VenmoLibrary;
 
 public class ListingsFragDetailsFrag extends android.support.v4.app.Fragment {
@@ -55,6 +60,8 @@ public class ListingsFragDetailsFrag extends android.support.v4.app.Fragment {
 
         ((MainActivity) getActivity()).goBackToListingsFrag(false);
 
+        ((MainActivity)getActivity()).makeNewConvo();
+
         title = (TextView) v.findViewById(R.id.title);
         price = (TextView) v.findViewById(R.id.price);
         description = (TextView) v.findViewById(R.id.description);
@@ -88,6 +95,21 @@ public class ListingsFragDetailsFrag extends android.support.v4.app.Fragment {
         Button chat = (Button) v.findViewById(R.id.chat);
         chat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                //gets the current convo and message from Main Activity
+                Message message = ((MainActivity)getActivity()).getCurrentMessage();
+                Convo convo = ((MainActivity) getActivity()).getCurrentConvo();
+
+                //sets convo data
+                convo.setSeller(listing.getAuthor());
+                convo.setBuyer(ParseUser.getCurrentUser());
+                convo.saveInBackground();
+                ((MainActivity)getActivity()).setConvo(convo);
+
+                //sets message data
+                message.put("seller", listing.getAuthor());
+                message.saveInBackground();
+
                 android.support.v4.app.Fragment ChatFrag = new ChatFrag();
                 android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
                         .beginTransaction();
@@ -110,8 +132,13 @@ public class ListingsFragDetailsFrag extends android.support.v4.app.Fragment {
     public void pay(){
         final Context c = (Context) this.getActivity();
         if (VenmoLibrary.isVenmoInstalled(c)) {
-            Intent venmoIntent = VenmoLibrary.openVenmoPayment("2768", "DormX", listing.getAuthor().getString("venmo"), listing.getPrice(), listing.getTitle(), "charge");
-            startActivityForResult(venmoIntent, 1);
+            try {
+                Intent venmoIntent = VenmoLibrary.openVenmoPayment("2768", "DormX", listing.getAuthor().fetchIfNeeded().getString("venmo"), listing.getPrice(), listing.getTitle(), "charge");
+                startActivityForResult(venmoIntent, 1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         } else {
             Toast.makeText(c, "Please intall Venmo app from Play Store", Toast.LENGTH_LONG).show();
         }

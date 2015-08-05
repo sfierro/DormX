@@ -11,15 +11,18 @@ public class Message extends ParseObject {
         return getParseUser("Author");
     }
 
+    public ParseUser getSeller() {return getParseUser("seller");}
+
     public String getBody() {
         return getString("body");
-    }
-
-    public void setAuthor(ParseUser user) {
-        put("Author", user);
     }
 
     public void setBody(String body) {
         put("body", body);
     }
+
+    public void setID(String ID) {put("ID",ID);}
+
+    public String getID() {return getString("ID");}
+
 }
