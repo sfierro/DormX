@@ -4,7 +4,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +30,9 @@ import com.parse.ParseImageView;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.starter.R;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import trial.Listing;
 import trial.MainActivity;
@@ -52,6 +61,8 @@ public class AddNewListing extends android.support.v4.app.Fragment {
     private EditText editTextDescription;
     private Spinner spinner;
     private int pos;
+    int clicked;
+    private int PICK_IMAGE_REQUEST = 1;
 
 
     @Override
@@ -97,8 +108,8 @@ public class AddNewListing extends android.support.v4.app.Fragment {
         post.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                if (editTextTitle.getText().toString().equals("") || editTextPrice.getText().toString().equals("") || editTextDescription.getText().toString().equals("") || spinner.getSelectedItem().toString().equals(null))
-                {
+                if (editTextTitle.getText().toString().equals("") || editTextPrice.getText().toString().equals("") || editTextDescription.getText().toString().equals("") || spinner.getSelectedItem() == null
+                        || listingPreview.getDrawable() == null) {
                     showAlertDialog2(getActivity(), "Not all fields completed",
                             "Please make sure you have completed all fields.", false);
                 } else {
@@ -161,7 +172,32 @@ public class AddNewListing extends android.support.v4.app.Fragment {
                 imm.hideSoftInputFromWindow(editTextPrice.getWindowToken(), 0);
                 imm.hideSoftInputFromWindow(editTextDescription.getWindowToken(), 0);
 
-                startCamera();
+                CharSequence decisions[] = new CharSequence[] {"Take picture", "Upload photo"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setItems(decisions, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // the user clicked on decisions[which]
+                        clicked = which;
+                        if (which == 0) {
+                            startCamera();
+                        } else {
+
+                            Intent intent = new Intent();
+
+                            // Show only images, no videos or anything else
+                            intent.setType("image/*");
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+
+                            // Always show the chooser (if there are multiple options available)
+                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+                        }
+                    }
+
+                });
+                builder.show();
+
             }
         });
 
@@ -216,19 +252,21 @@ public class AddNewListing extends android.support.v4.app.Fragment {
         spinner.setSelection(((MainActivity) getActivity()).getCurrentListing().getPos());
 
         //setting photo
-        ParseFile photoFile = ((MainActivity) getActivity())
-                .getCurrentListing().getPhotoFile();
-        if (photoFile != null) {
-            listingPreview.setParseFile(photoFile);
-            listingPreview.loadInBackground(new GetDataCallback() {
-                @Override
-                public void done(byte[] data, com.parse.ParseException e) {
-                    listingPreview.setVisibility(View.VISIBLE);
-                }
-            });
+        if (clicked == 0) {
+            ParseFile photoFile = ((MainActivity) getActivity())
+                    .getCurrentListing().getPhotoFile();
+            if (photoFile != null) {
+                listingPreview.setParseFile(photoFile);
+                listingPreview.loadInBackground(new GetDataCallback() {
+                    @Override
+                    public void done(byte[] data, com.parse.ParseException e) {
+                        listingPreview.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
         }
     }
-    @Override
+
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
@@ -255,7 +293,7 @@ public class AddNewListing extends android.support.v4.app.Fragment {
                         .beginTransaction();
                 transaction.replace(R.id.container, profileFrag);
                 transaction.addToBackStack("AddNewListing");
-                ((MainActivity)getActivity()).getNav().selectItem(1);
+                ((MainActivity) getActivity()).getNav().selectItem(1);
                 transaction.commit();
             }
         });
@@ -285,6 +323,91 @@ public class AddNewListing extends android.support.v4.app.Fragment {
 
         // Showing Alert Message
         alertDialog.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+
+
+
+                Bitmap listingImageScaled = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+//                Bitmap listingImageScaled = Bitmap.createScaledBitmap(bitmap, 400, 700
+//                        * bitmap.getHeight() / bitmap.getWidth(), false);
+
+
+                // Override Android default landscape orientation and save portrait
+
+
+                Matrix matrix = new Matrix();
+
+                matrix.postRotate(getOrientation(getActivity(), uri));
+
+
+                Bitmap rotatedScaledListingImage = Bitmap.createBitmap(listingImageScaled, 0,
+                        0, listingImageScaled.getWidth(), listingImageScaled.getHeight(), matrix,true);
+
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                rotatedScaledListingImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+
+                byte[] scaledData = bos.toByteArray();
+
+                // Save the scaled image to Parse
+                final ParseFile photoFile = new ParseFile("listing_photo.jpg", scaledData);
+                photoFile.saveInBackground(new SaveCallback() {
+
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Toast.makeText(getActivity(),
+                                    "Error saving: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            ((MainActivity) getActivity()).getCurrentListing().setPhotoFile(
+                                    photoFile);
+
+                            ParseUser.getCurrentUser().saveInBackground();
+                            if (photoFile != null) {
+                                listingPreview.setParseFile(photoFile);
+                                listingPreview.loadInBackground(new GetDataCallback() {
+                                    @Override
+                                    public void done(byte[] data, com.parse.ParseException e) {
+                                        listingPreview.setVisibility(View.VISIBLE);
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+    public static int getOrientation(Context context, Uri photoUri) {
+        Cursor cursor = context.getContentResolver().query(photoUri,
+                new String[]{MediaStore.Images.ImageColumns.ORIENTATION},
+                null, null, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            } else {
+                return -1;
+            }
+        } finally {
+            cursor.close();
+        }
     }
 
 }

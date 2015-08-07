@@ -1,10 +1,16 @@
 package trial;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,9 +31,14 @@ import com.parse.Parse;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.starter.R;
 
 import org.w3c.dom.Text;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.text.ParseException;
 
 import listings.CameraFragment2;
 import listings.ListingsFragAdapter;
@@ -63,6 +74,10 @@ public class ProfileFrag extends Fragment {
     }
 
     public ProfileFrag(){}
+
+    private ParseFile photoFile;
+    int clicked;
+    private int PICK_IMAGE_REQUEST = 1;
 
     @Nullable
     @Override
@@ -189,10 +204,34 @@ public class ProfileFrag extends Fragment {
         cam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) getActivity()
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(enter_name.getWindowToken(), 0);
-                startCamera();
+                CharSequence decisions[] = new CharSequence[] {"Take picture", "Upload photo"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setItems(decisions, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // the user clicked on decisions[which]
+                        clicked = which;
+                        if (which == 0) {
+                            InputMethodManager imm = (InputMethodManager) getActivity()
+                                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(enter_name.getWindowToken(), 0);
+                            startCamera();
+                        } else {
+
+                            Intent intent = new Intent();
+
+                            // Show only images, no videos or anything else
+                            intent.setType("image/*");
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+
+                            // Always show the chooser (if there are multiple options available)
+                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+                        }
+                    }
+
+                });
+                builder.show();
             }
         });
 
@@ -214,18 +253,22 @@ public class ProfileFrag extends Fragment {
     public void onResume() {
         super.onResume();
         updateListings();
-        ParseFile photoFile = ParseUser.getCurrentUser().getParseFile("prof");
-        ParseUser.getCurrentUser().saveInBackground();
-        if (photoFile != null) {
-            prof_pic.setParseFile(photoFile);
-            prof_pic.loadInBackground(new GetDataCallback() {
-                @Override
-                public void done(byte[] data, com.parse.ParseException e) {
-                    prof_pic.setVisibility(View.VISIBLE);
-                    cam.setVisibility(View.VISIBLE);
-                    add_pic.setVisibility(View.GONE);
-                }
-            });
+        if (clicked == 0) {
+
+            ParseFile photoFile = ParseUser.getCurrentUser().getParseFile("prof");
+
+            ParseUser.getCurrentUser().saveInBackground();
+            if (photoFile != null) {
+                prof_pic.setParseFile(photoFile);
+                prof_pic.loadInBackground(new GetDataCallback() {
+                    @Override
+                    public void done(byte[] data, com.parse.ParseException e) {
+                        prof_pic.setVisibility(View.VISIBLE);
+                        cam.setVisibility(View.VISIBLE);
+                        add_pic.setVisibility(View.GONE);
+                    }
+                });
+            }
         }
     }
 
@@ -239,6 +282,88 @@ public class ProfileFrag extends Fragment {
 
     public void updateListings(){
         mainAdapter.loadObjects();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+
+
+
+                Bitmap listingImageScaled = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+
+
+                // Override Android default landscape orientation and save portrait
+
+
+                Matrix matrix = new Matrix();
+
+                matrix.postRotate(getOrientation(getActivity(), uri));
+
+
+                Bitmap rotatedScaledListingImage = Bitmap.createBitmap(listingImageScaled, 0,
+                        0, listingImageScaled.getWidth(), listingImageScaled.getHeight(), matrix,true);
+
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                rotatedScaledListingImage.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+
+                byte[] scaledData = bos.toByteArray();
+
+                // Save the scaled image to Parse
+                photoFile = new ParseFile("prof.jpg", scaledData);
+                photoFile.saveInBackground(new SaveCallback() {
+
+                    public void done(com.parse.ParseException e) {
+                        if (e != null) {
+                            Toast.makeText(getActivity(),
+                                    "Error saving: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            ParseUser.getCurrentUser().put("prof", photoFile);
+                            ParseFile photoFile = ParseUser.getCurrentUser().getParseFile("prof");
+
+                            ParseUser.getCurrentUser().saveInBackground();
+                            if (photoFile != null) {
+                                prof_pic.setParseFile(photoFile);
+                                prof_pic.loadInBackground(new GetDataCallback() {
+                                    @Override
+                                    public void done(byte[] data, com.parse.ParseException e) {
+                                        prof_pic.setVisibility(View.VISIBLE);
+                                        cam.setVisibility(View.VISIBLE);
+                                        add_pic.setVisibility(View.GONE);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static int getOrientation(Context context, Uri photoUri) {
+        Cursor cursor = context.getContentResolver().query(photoUri,
+                new String[] { MediaStore.Images.ImageColumns.ORIENTATION },
+                null, null, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            } else {
+                return -1;
+            }
+        } finally {
+            cursor.close();
+        }
     }
 
 }

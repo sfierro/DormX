@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" >
-    <ImageView
+    <com.parse.ParseImageView
         android:id="@+id/ivProfileLeft"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/arrow" />
+        android:src="@drawable/face"/>
     <TextView
         android:textSize="18sp"
         android:id="@+id/tvBody"
@@ -17,10 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="64dp">
     </TextView>
-    <ImageView
+    <com.parse.ParseImageView
         android:id="@+id/ivProfileRight"
         android:layout_marginLeft="-64dp"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/glass" />
+        android:src="@drawable/myface"
+        />
 </LinearLayout><!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/layout/chat_item.xml -->

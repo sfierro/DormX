@@ -47,6 +47,9 @@ public class MyListingsFragDetailsFrag extends android.support.v4.app.Fragment {
 
         View v = inflater.inflate(R.layout.my_detail_page, parent, false);
 
+        ((MainActivity) getActivity()).goBackToPrevious(true);
+        ((MainActivity) getActivity()).goBackToListingsFrag(false);
+
         listing = ((MainActivity) getActivity()).getListing();
 
         ((MainActivity) getActivity()).setActionBarTitle("");
@@ -85,12 +88,16 @@ public class MyListingsFragDetailsFrag extends android.support.v4.app.Fragment {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listing.deleteEventually();
-                android.support.v4.app.Fragment profileFragment = new ProfileFrag();
-                android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
-                        .beginTransaction();
-                transaction.replace(R.id.container, profileFragment);
-                transaction.commit();
+                try {
+                    listing.delete();
+                    android.support.v4.app.Fragment profileFragment = new ProfileFrag();
+                    android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
+                            .beginTransaction();
+                    transaction.replace(R.id.container, profileFragment);
+                    transaction.commit();
+                } catch (ParseException e) {
+                    Toast.makeText(getActivity(), "Error with deleting listing: Please try again.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

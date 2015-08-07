@@ -9,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseUser;
 import com.parse.starter.R;
 import java.util.List;
@@ -27,11 +31,13 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
             convertView = LayoutInflater.from(getContext()).
                     inflate(R.layout.chat_item, parent, false);
             final ViewHolder holder = new ViewHolder();
-            holder.imageLeft = (ImageView)convertView.findViewById(R.id.ivProfileLeft);
-            holder.imageRight = (ImageView)convertView.findViewById(R.id.ivProfileRight);
+            holder.imageLeft = (ParseImageView)convertView.findViewById(R.id.ivProfileLeft);
+            holder.imageRight = (ParseImageView)convertView.findViewById(R.id.ivProfileRight);
+//            holder.imageRight.setParseFile(mAuthor.getParseFile("prof"));
             holder.body = (TextView)convertView.findViewById(R.id.tvBody);
             convertView.setTag(holder);
         }
+
         final Message message = (Message)getItem(position);
         final ViewHolder holder = (ViewHolder)convertView.getTag();
         final boolean isMe = message.getAuthor() == mAuthor;
@@ -52,8 +58,8 @@ public class ChatListAdapter extends ArrayAdapter<Message> {
     }
 
     final class ViewHolder {
-        public ImageView imageLeft;
-        public ImageView imageRight;
+        public ParseImageView imageLeft;
+        public ParseImageView imageRight;
         public TextView body;
     }
 

@@ -127,8 +127,9 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 
 		// Resize photo from camera byte array
 		Bitmap listingImage = BitmapFactory.decodeByteArray(data, 0, data.length);
-		Bitmap listingImageScaled = Bitmap.createScaledBitmap(listingImage, 400, 700
-				* listingImage.getHeight() / listingImage.getWidth(), false);
+		Bitmap listingImageScaled = Bitmap.createScaledBitmap(listingImage, 300, 300, false);
+//		Bitmap listingImageScaled = Bitmap.createScaledBitmap(listingImage, 400, 700
+//				* listingImage.getHeight() / listingImage.getWidth(), false);
 
 		// Override Android default landscape orientation and save portrait
 		Matrix matrix = new Matrix();
