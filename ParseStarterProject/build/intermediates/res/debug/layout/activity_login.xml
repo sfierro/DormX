@@ -34,22 +34,22 @@
                 android:text="@string/action_sign_in_short" />
             
 
-            <TextView
-                android:id="@+id/orTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/orText"
-                android:layout_marginTop="16dp"
-            />
-            
-            <Button
-                android:id="@+id/btn_signup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_register" />
+            <!--<TextView-->
+                <!--android:id="@+id/orTV"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:text="@string/orText"-->
+                <!--android:layout_marginTop="16dp"-->
+            <!--/>-->
+            <!-- -->
+            <!--<Button-->
+                <!--android:id="@+id/btn_signup"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="@string/action_register" />-->
 
             <Button
                 android:id="@+id/btn_ForgetPass"
@@ -59,19 +59,5 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Forget Password" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to DormX"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="50dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="An eXchange platform to buy and sell things!"
-        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout><!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/layout/activity_login.xml -->

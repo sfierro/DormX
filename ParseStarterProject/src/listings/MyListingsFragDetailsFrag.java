@@ -1,6 +1,8 @@
 package listings;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseImageView;
+import com.parse.ParseUser;
 import com.parse.starter.R;
 
 import java.util.Random;
@@ -88,22 +91,35 @@ public class MyListingsFragDetailsFrag extends android.support.v4.app.Fragment {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    listing.delete();
-                    android.support.v4.app.Fragment profileFragment = new ProfileFrag();
-                    android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
-                            .beginTransaction();
-                    transaction.replace(R.id.container, profileFragment);
-                    transaction.commit();
-                } catch (ParseException e) {
-                    Toast.makeText(getActivity(), "Error with deleting listing: Please try again.", Toast.LENGTH_LONG).show();
-                }
+                AlertDialog.Builder db = new AlertDialog.Builder(getActivity());
+                db.setTitle("Are you sure?");
+                db.setPositiveButton("Delete", new
+                        DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    listing.delete();
+                                    android.support.v4.app.Fragment profileFragment = new ProfileFrag();
+                                    android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager()
+                                            .beginTransaction();
+                                    transaction.replace(R.id.container, profileFragment);
+                                    transaction.commit();
+                                } catch (ParseException e) {
+                                    Toast.makeText(getActivity(), "Error with deleting listing: Please try again.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                db.setNegativeButton("Cancel", new
+                        DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //
+                            }
+                        });
+                db.show();
             }
         });
 
         return v;
     }
-
 
 }
 

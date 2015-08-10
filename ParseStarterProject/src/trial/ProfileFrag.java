@@ -65,6 +65,7 @@ public class ProfileFrag extends Fragment {
     private Button submit;
     private MyListingsFragAdapter mainAdapter;
     private ListView list;
+    TextView ven;
 
     public static ProfileFrag newInstance(){
 
@@ -125,6 +126,7 @@ public class ProfileFrag extends Fragment {
         cam = (ImageButton) rootView.findViewById(R.id.cam);
         venmo_edit_text = (EditText) rootView.findViewById(R.id.venmo_edit_text);
         venmo_name = (TextView) rootView.findViewById(R.id.venmo_name);
+        ven = (TextView) rootView.findViewById(R.id.ven);
         submit = (Button) rootView.findViewById(R.id.submit);
 
         prof = ParseUser.getCurrentUser().getParseFile("prof");
@@ -154,6 +156,8 @@ public class ProfileFrag extends Fragment {
         if (user.getString("venmo") != null) {
             venmo_name.setText(user.getString("venmo"));
             venmo_name.setVisibility(View.VISIBLE);
+            ven.setText("Venmo username:");
+            ven.setVisibility(View.VISIBLE);
             venmo_edit_text.setVisibility(View.GONE);
             submit.setVisibility(View.GONE);
         }
@@ -163,6 +167,8 @@ public class ProfileFrag extends Fragment {
                 venmo_name.setText(venmo_edit_text.getText().toString());
                 ParseUser.getCurrentUser().put("venmo",venmo_edit_text.getText().toString());
                 venmo_name.setVisibility(View.VISIBLE);
+                venmo_name.setVisibility(View.VISIBLE);
+                ven.setText("Venmo username:");
                 venmo_edit_text.setVisibility(View.GONE);
                 submit.setVisibility(View.GONE);
             }

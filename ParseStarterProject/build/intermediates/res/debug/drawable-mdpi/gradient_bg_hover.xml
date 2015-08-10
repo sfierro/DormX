@@ -3,7 +3,7 @@
     android:shape="rectangle">
   <gradient
       android:startColor="#2D8447"
-      android:centerColor="#14692E"
-      android:endColor="#024917"
+      android:centerColor="#2D8447"
+      android:endColor="#2D8447"
       android:angle="270" />
 </shape><!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/drawable-mdpi/gradient_bg_hover.xml -->

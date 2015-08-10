@@ -80,6 +80,7 @@
         android:layout_width="match_parent"
         android:layout_below="@+id/view1"
         android:fillViewport="true"
+        android:background="#ffffff"
         />
 </RelativeLayout>
 <!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/layout/listings_frag.xml -->

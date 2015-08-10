@@ -66,7 +66,7 @@ public class Inbox extends android.support.v4.app.Fragment {
        final View rootView = inflater.inflate(R.layout.inbox,container,false);
 
         ((MainActivity) getActivity()).goBackToPrevious(false);
-        ((MainActivity) getActivity()).goBackToListingsFrag(false);
+        ((MainActivity) getActivity()).goBackToListingsFrag(true);
         ((MainActivity)getActivity()).setActionBarTitle("Chat Inbox");
 
         messages = (ListView) rootView.findViewById(R.id.messages);

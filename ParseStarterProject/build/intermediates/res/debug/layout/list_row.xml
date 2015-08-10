@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/list_selector"
     android:orientation="horizontal"
-    android:padding="5dp" >
+    android:padding="0dp"
+    >
 
     <TextView
         android:id="@+id/title"
@@ -61,5 +62,13 @@
         android:textSize="16sp"
         android:padding="5dp"
         android:layout_margin="5dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="0dp"
+        android:padding="0dp"/>
 
 </RelativeLayout><!-- From: file:/Users/samfierro/Desktop/DormX/DormX/ParseStarterProject/res/layout/list_row.xml -->

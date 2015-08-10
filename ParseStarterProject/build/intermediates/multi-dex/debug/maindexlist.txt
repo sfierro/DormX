@@ -276,6 +276,7 @@ com/google/android/gms/wallet/CountrySpecification.class
 com/google/android/gms/internal/zzil.class
 com/parse/ParseUser.class
 android/support/v4/widget/CursorAdapter.class
+loginusingparsesdk/Welcome.class
 android/support/v4/widget/SimpleCursorAdapter.class
 com/google/android/gms/internal/zzfo.class
 com/google/ads/mediation/AbstractAdViewAdapter.class
@@ -404,6 +405,7 @@ com/google/android/gms/internal/zzdl.class
 com/google/android/gms/ads/internal/zzo.class
 com/parse/ParseObject.class
 com/google/android/gms/internal/zzaz.class
+loginusingparsesdk/Welcome$2.class
 com/google/android/gms/ads/internal/overlay/zzc$zza.class
 com/google/android/gms/wearable/ChannelApi$OpenChannelResult.class
 com/google/android/gms/ads/internal/overlay/zzi.class
@@ -479,7 +481,6 @@ android/support/annotation/IntRange.class
 loginusingparsesdk/Login$2.class
 com/google/android/gms/wallet/WalletConstants.class
 android/support/v4/app/NavUtils.class
-loginusingparsesdk/Login$5.class
 android/support/annotation/WorkerThread.class
 android/support/v4/app/BackStackRecord$TransitionState.class
 android/support/annotation/FractionRes.class
@@ -515,6 +516,7 @@ com/google/android/gms/internal/zzfc.class
 com/parse/ParseClassName.class
 com/google/android/gms/internal/zzht.class
 com/google/android/gms/auth/AccountChangeEventsRequest.class
+loginusingparsesdk/Welcome$1.class
 com/google/android/gms/ads/internal/overlay/zzc$zzc.class
 android/support/v4/view/GravityCompat.class
 loginusingparsesdk/SignUp.class

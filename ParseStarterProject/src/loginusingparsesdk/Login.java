@@ -35,6 +35,8 @@ public class Login extends Activity {
 	Button btn_ForgetPass = null;
 	private EditText mUserNameEditText;
 	private EditText mPasswordEditText;
+	boolean isInitialized;
+
 
 	// flag for Internet connection status
 	Boolean isInternetPresent = false;
@@ -48,20 +50,21 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		//Initializing Parse SDK
-		onCreateParse();
+//		onCreateParse();
 		//Calling ParseAnalytics to see Analytics of our app
-		ParseAnalytics.trackAppOpened(getIntent());
-		
+//		ParseAnalytics.trackAppOpened(getIntent());
 		// creating connection detector class instance
 		cd = new ConnectionDetector(getApplicationContext());
+		Intent in = getIntent();
+		isInitialized = in.getExtras().getBoolean("isInitialized");
+
 
 		btn_LoginIn = (Button) findViewById(R.id.btn_login);
-		btn_SignUp = (Button) findViewById(R.id.btn_signup);
+//		btn_SignUp = (Button) findViewById(R.id.btn_signup);
 		btn_ForgetPass = (Button) findViewById(R.id.btn_ForgetPass);
 		mUserNameEditText = (EditText) findViewById(R.id.username);
 		mPasswordEditText = (EditText) findViewById(R.id.password);
 		mPasswordEditText.setText("");
-
 
 		btn_LoginIn.setOnClickListener(new OnClickListener() {
 
@@ -86,15 +89,15 @@ public class Login extends Activity {
 			}
 		});
 
-		btn_SignUp.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent in =  new Intent(Login.this, SignUp.class);
-				startActivity(in);
-			}
-		});
+//		btn_SignUp.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent in =  new Intent(Login.this, SignUp.class);
+//				startActivity(in);
+//			}
+//		});
 		
 		btn_ForgetPass.setOnClickListener(new OnClickListener() {
 			
@@ -108,13 +111,13 @@ public class Login extends Activity {
 
 	}
 
-	public void onCreateParse() {
-		ParseObject.registerSubclass(Listing.class);
-        ParseObject.registerSubclass(Message.class);
-		ParseObject.registerSubclass(Convo.class);
-		Parse.enableLocalDatastore(this);
-		Parse.initialize(this, "OHN1vjNjDDN5L46ztns0EGB7ApSq1rXi3RrHksN8", "w1xlxox48cSzRWflCfuzR5Oa6gG5qU6qlKAhA03z");
-	}
+//	public void onCreateParse() {
+//		ParseObject.registerSubclass(Listing.class);
+//        ParseObject.registerSubclass(Message.class);
+//		ParseObject.registerSubclass(Convo.class);
+//		Parse.enableLocalDatastore(this);
+//		Parse.initialize(this, "OHN1vjNjDDN5L46ztns0EGB7ApSq1rXi3RrHksN8", "w1xlxox48cSzRWflCfuzR5Oa6gG5qU6qlKAhA03z");
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -200,6 +203,7 @@ public class Login extends Activity {
 	protected void loginSuccessful() {
 		// TODO Auto-generated method stub
 		Intent in =  new Intent(Login.this, MainActivity.class);
+		in.putExtra("isInitialized",isInitialized);
 		startActivity(in);
 	}
 	protected void loginUnSuccessful() {

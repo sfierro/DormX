@@ -245,6 +245,9 @@ public class AddNewListing extends android.support.v4.app.Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        ((MainActivity) getActivity()).goBackToPrevious(true);
+        ((MainActivity) getActivity()).goBackToListingsFrag(false);
+        ((MainActivity) getActivity()).setActionBarTitle("New Listing");
         //if user has inputted info into edit texts set the text to what is was before taking pic
         editTextTitle.setText(((MainActivity) getActivity()).getCurrentListing().getTitle());
         editTextPrice.setText(((MainActivity) getActivity()).getCurrentListing().getPrice());

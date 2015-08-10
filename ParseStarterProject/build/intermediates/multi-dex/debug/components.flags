@@ -16,6 +16,10 @@
     void attachBaseContext(android.content.Context);
 }
 
+-keep class loginusingparsesdk.Welcome {
+    <init>();
+}
+
 -keep class loginusingparsesdk.Login {
     <init>();
 }

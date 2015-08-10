@@ -1,6 +1,7 @@
 package trial;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,8 @@ import com.parse.starter.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import listings.ListingsFrag;
 
 public class ChatFrag extends Fragment {
 
@@ -56,7 +59,9 @@ public class ChatFrag extends Fragment {
                              Bundle SavedInstanceState) {
 
         View v = inflater.inflate(R.layout.activity_chat, parent, false);
-
+        ((MainActivity) getActivity()).goBackToPrevious(true);
+        ((MainActivity) getActivity()).goBackToListingsFrag(false);
+        ((MainActivity) getActivity()).setActionBarTitle("Chat");
         convo = ((MainActivity) getActivity()).getConvo();
 
         etMessage = (EditText) v.findViewById(R.id.etMessage);
@@ -90,18 +95,18 @@ public class ChatFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 String data = etMessage.getText().toString();
-                message = ((MainActivity)getActivity()).getCurrentMessage();
+                message = ((MainActivity) getActivity()).getCurrentMessage();
                 message.put("Author", ParseUser.getCurrentUser());
                 message.put("body", data);
                 //puts the same object ID as convo to message ID so they are correlated
-                message.put("ID",convo.getObjectId());
+                message.put("ID", convo.getObjectId());
                 message.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                     }
                 });
 
-                ((MainActivity)getActivity()).makeNewMessage();
+                ((MainActivity) getActivity()).makeNewMessage();
                 etMessage.setText("");
             }
         });
@@ -121,8 +126,10 @@ public class ChatFrag extends Fragment {
                     mMessages.clear();
                     //Parses through all messages in Parse, if message goes with convo then add to listview
                     for (int i = 0; i < messages.size(); i++) {
-                        if (messages.get(i).getString("ID")==null) {continue;}
-                          if (messages.get(i).getID().equals(convo.getObjectId())){
+                        if (messages.get(i).getString("ID") == null) {
+                            continue;
+                        }
+                        if (messages.get(i).getID().equals(convo.getObjectId())) {
                             mMessages.add(messages.get(i));
                         }
                     }
@@ -145,5 +152,7 @@ public class ChatFrag extends Fragment {
 
         ((MainActivity) activity).onSectionAttached(1);
     }
+
+
 
 }

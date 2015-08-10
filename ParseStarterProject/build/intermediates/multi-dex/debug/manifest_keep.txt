@@ -2,6 +2,7 @@
     <init>();
     void attachBaseContext(android.content.Context);
 }
+-keep class loginusingparsesdk.Welcome { <init>(); }
 -keep class loginusingparsesdk.Login { <init>(); }
 -keep class loginusingparsesdk.ForgetParsePassword { <init>(); }
 -keep class trial.MainActivity { <init>(); }

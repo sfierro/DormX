@@ -32,6 +32,7 @@ import java.util.List;
 
 import listings.ListingsFrag;
 import listings.ListingsFragAdapter;
+import loginusingparsesdk.Welcome;
 
 
 public class MainActivity extends ActionBarActivity
@@ -48,7 +49,7 @@ public class MainActivity extends ActionBarActivity
     private String search;
     private Message message;
     private Convo convo;
-
+    Boolean isInitialized;
     private Boolean goBackToListingsFrag;
 
     /**
@@ -60,7 +61,8 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent in = getIntent();
+        isInitialized = in.getExtras().getBoolean("isInitialized");
         if (!(ParseUser.getCurrentUser().getBoolean("emailVerified"))) {
             showAlertDialog(MainActivity.this, "Please verify email account",
                     "You must verify your school email account before continuing.", false);
@@ -115,7 +117,9 @@ public class MainActivity extends ActionBarActivity
                     DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             ParseUser.getCurrentUser().logOut();
-                            finish();
+                            Intent in = new Intent(MainActivity.this, Welcome.class);
+                            in.putExtra("isInitialized",isInitialized);
+                            startActivity(in);
                         }
                     });
             db.setNegativeButton("Cancel", new
@@ -217,6 +221,7 @@ public class MainActivity extends ActionBarActivity
             setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(setIntent);
         }
+
 
         // regular back button functionality
         else {
